@@ -66,4 +66,3 @@ function copyElementText(element) {
     element.classList.add("copied");
   });
 }
-
