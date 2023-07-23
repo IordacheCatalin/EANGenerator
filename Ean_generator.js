@@ -31,17 +31,19 @@ function generateNumbers() {
 
     if (!generatedNumbers.has(eanLikeNumber)) {
       generatedNumbers.add(eanLikeNumber);
+     
+
       outputDiv.innerHTML +=
-        "<div class='ean' ondblclick='removeElement()'  onclick='copyElementText(this)' >" +
-        eanLikeNumber +
-        "</div>";
+      "<div class='ean' ondblclick='removeElement(event)' onclick='copyElementText(this, event)' >" +
+      eanLikeNumber +
+      "</div>";
     }
   }
 }
 
-function removeElement() {
-  const element = document.querySelector(".ean");
-  if (element) {
+function removeElement(event) {
+  const element = event.target;
+  if (element && element.classList.contains("ean")) {
     element.remove();
   }
 }
@@ -59,10 +61,34 @@ function checkEANContainer() {
 document.addEventListener("DOMContentLoaded", checkEANContainer);
 eanContainer.addEventListener("DOMSubtreeModified", checkEANContainer);
 
-function copyElementText(element) {
+let clickTimeout; // Global variable to hold the timeout reference
+const copiedElements = new Set(); // Set to store the copied elements
+
+function copyElementText(element, event) {
+  // Clear the previous timeout if it exists
+  if (clickTimeout) {
+    clearTimeout(clickTimeout);
+    clickTimeout = null;
+  }
+
+  // Check if the event type is "dblclick" (double-click)
+  if (event && event.type === "dblclick") {
+    alert("EAN copied on double-click: " + element.innerText);
+    return; // Do nothing and exit the function on double-click
+  }
+
+  if (copiedElements.has(element)) {
+    // Element has already been copied, so return without copying or showing the alert
+    return;
+  }
+
   const textToCopy = element.innerText;
   navigator.clipboard.writeText(textToCopy).then(() => {
-    alert("EAN copied : " + textToCopy);
     element.classList.add("copied");
+    copiedElements.add(element); // Mark the element as copied
+
+    clickTimeout = setTimeout(() => {
+      alert("EAN copied on single-click: " + textToCopy);
+    }, 500); // Delay the alert by 500ms
   });
 }

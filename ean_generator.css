@@ -38,7 +38,6 @@ button {
 }
 
 .ean {
-  display:inline-block;
   width: fit-content;
   border: 2px solid rgb(255, 255, 255);
   padding: 5px 10px;
