@@ -73,7 +73,6 @@ function copyElementText(element, event) {
 
   // Check if the event type is "dblclick" (double-click)
   if (event && event.type === "dblclick") {
-    alert("EAN copied on double-click: " + element.innerText);
     return; // Do nothing and exit the function on double-click
   }
 
@@ -88,7 +87,15 @@ function copyElementText(element, event) {
     copiedElements.add(element); // Mark the element as copied
 
     clickTimeout = setTimeout(() => {
-      alert("EAN copied on single-click: " + textToCopy);
-    }, 500); // Delay the alert by 500ms
+      const modal = document.getElementById("customAlert");
+      const alertText = document.getElementById("alertText");
+      alertText.textContent = "EAN COPIED: " + textToCopy;
+
+      modal.style.display = "block";
+
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 3000);
+    }, 500);
   });
 }
