@@ -16,6 +16,12 @@ body {
   text-shadow: 2px 2px 5px black;
 }
 
+.MyLogo{
+  position: absolute;
+  left: 10px;
+  bottom:50px;
+}
+
 button {
   height: 40px;
   width: 300px;
