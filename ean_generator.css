@@ -1,16 +1,13 @@
-body {
-  background-color: #c9c9c9;
-}
-
-.contaier {
+.containerCustom {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  background-color: #c9c9c9!important;
+  min-width: 100%;
+  min-height: 100vh;
   align-items: center;
-  margin: 0px 30px 30px 30px;
 }
 
-.contaier h1 {
+.containerCustom h1 {
   color: white;
   font-size: 40px;
   text-shadow: 2px 2px 5px black;
@@ -22,7 +19,7 @@ body {
   bottom:50px;
 }
 
-button {
+.customBtn {
   height: 40px;
   width: 300px;
   margin-bottom: 50px;

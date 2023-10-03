@@ -3,17 +3,20 @@
   <head>
     <title>EAN Number Generator</title>
     <link rel="stylesheet" href="ean_generator.css" />
+    <link rel="stylesheet" href="./bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css" />
   </head>
   <body>
-    <div class="contaier">
+    <div class="containerCustom">
       <img
         src="Assets/Catalin logo mic 250px.png"
         alt="My logo"
         class="MyLogo"
       />
       <h1>EAN Number Generator</h1>
-      <button onclick="generateNumbers()">Generate EAN</button>
-      <div class="ean-container" id="output"></div>
+      <button onclick="generateNumbers()" type="button" class="customBtn">
+        Generate EAN
+      </button>
+      <div class="ean-container " id="output"></div>
 
       <h1>Percentage calculator</h1>
       <input type="text" id="numberInput" placeholder="Enter number" />
@@ -27,7 +30,7 @@
         <option value="multiply">*</option>
         <option value="divide">/</option>
       </select>
-      <button onclick="calculateResult()">Calculate</button>
+      <button onclick="calculateResult()" class="customBtn">Calculate</button>
     </div>
 
     <div class="modal" id="customAlert">
@@ -35,5 +38,7 @@
     </div>
     <script src="Ean_generator.js"></script>
     <script src="ProcentCalculator.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
   </body>
 </html>
